@@ -1,0 +1,8 @@
+provider: openai_compatible
+api_key_env: GLYCODA_API_KEY
+base_url_env: GLYCODA_BASE_URL
+llm_timeout_sec: 600
+llm_http_max_retries: 2
+llm_outer_attempts: 4
+llm_retry_backoff_sec: 1.5
+

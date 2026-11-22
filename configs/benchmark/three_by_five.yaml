@@ -1,0 +1,13 @@
+# Example: 3 models × 5 GlycoForge cases (adjust paths to your machine).
+# Scenario types cycle in generator order: roughly missing_only → batch_only → batch_and_missing (repeat).
+# Replace model YAML names via: python -m src.app.run_benchmark --models-dir configs/models --benchmark-config configs/benchmark/three_by_five.yaml --only-models a.yaml b.yaml c.yaml
+
+seeds: [42]
+output_dir: outputs
+
+datasets:
+  - data/glycoforge_benchmark_500/gf_case_0001
+  - data/glycoforge_benchmark_500/gf_case_0002
+  - data/glycoforge_benchmark_500/gf_case_0003
+  - data/glycoforge_benchmark_500/gf_case_0004
+  - data/glycoforge_benchmark_500/gf_case_0005

@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "glycoagentbench"
+version = "3.0.0"
+description = "LangChain agent benchmark for glycomics workflow recommendation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "scipy>=1.11.0",
+    "matplotlib>=3.8.0",
+    "networkx>=3.2.0",
+    "pydantic>=2.7.0",
+    "python-dotenv>=1.0.1",
+    "pyyaml>=6.0.1",
+    "aiohttp>=3.9.0",
+    "scikit-learn>=1.3.0",
+    "pycombat>=0.20",
+    "statsmodels>=0.14.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "neurocombat-sklearn>=0.1.3",
+    "tomli>=2.0; python_version < '3.11'",
+]
+# Optional: full Harmony (PyTorch). Without it, run_harmony uses PCA + ComBat on PCs.
+analysis_full = ["harmonypy>=0.2.0", "torch>=2.0.0"]
+
+[project.scripts]
+glyco-bench = "src.app.run_benchmark:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["glycoagentbench*", "src*"]

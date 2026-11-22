@@ -1,0 +1,6 @@
+﻿seeds: [42]
+output_dir: outputs
+datasets:
+  - data/mock_demo
+
+allowed_task_types: [workflow_recommendation]

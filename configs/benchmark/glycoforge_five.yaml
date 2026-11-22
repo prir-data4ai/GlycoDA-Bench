@@ -1,0 +1,8 @@
+# GlycoForge: first 5 case dirs (sorted gf_case_*) — 3 models × 5 tasks = 15 runs.
+# Parallel: use --workers 3 (or 5) with run_benchmark; watch API rate limits.
+seeds: [42]
+output_dir: outputs
+datasets: []
+datasets_root: data/glycoforge_benchmark_500
+dataset_glob: "gf_case_*"
+max_datasets: 5

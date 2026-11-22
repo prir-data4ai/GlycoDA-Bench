@@ -1,0 +1,40 @@
+You are given a structured task package for a glycomics analysis benchmark. Read the task card carefully.
+
+The planner context JSON may contain:
+- task.analysis_goal and task.task_description
+- task.known_constraints: non-oracle setup facts
+- task.decision_focus: reminders about tradeoffs
+- dataset_summary: coarse dataset facts
+- runtime_observation: preflight statistics from the actual matrix
+- available_tools and schema
+
+Your job is not only to produce a workflow, but to expose the judgment process that led to it.
+
+Required output sections:
+1) dataset_assessment
+2) decision_audit
+3) ordered workflow steps
+4) final_analysis_target and optional stop_conditions
+
+For `decision_audit`, include at least these aspects when relevant:
+- `missingness`
+- `compositionality`
+- `batch`
+- `post_de_followup`
+
+Each decision_audit item must contain:
+- `aspect`
+- `observed_evidence`
+- `judgment`
+- `chosen_action`
+- `rejected_actions`
+- `confidence`
+
+Critical rules:
+- Do not treat task metadata as ground truth for what the workflow must be.
+- Base decisions on runtime_observation and dataset_summary first.
+- Batch labels alone do not justify correction.
+- Missingness must be assessed from the matrix, not assumed.
+- Prefer minimal workflows, but document what you considered and rejected.
+- If two actions are plausible, say so explicitly in decision_audit and reflect uncertainty with confidence.
+- Optional steps like PCA or motif enrichment must be justified in decision_audit, not merely added.

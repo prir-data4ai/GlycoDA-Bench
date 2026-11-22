@@ -1,0 +1,9 @@
+name: qwen3-1.7b-instruct
+provider: openai_compatible
+model: qwen3-1.7b-instruct-agent-test
+api_key_env: GLYCODA_API_KEY
+base_url_env: GLYCODA_BASE_URL
+temperature: 0.7
+supports_tool_calling: true
+enable_thinking: false
+

@@ -1,0 +1,8 @@
+name: qwen3-max
+provider: openai_compatible
+model: api_ali_qwen-max-2025-01-25
+api_key_env: GLYCODA_API_KEY
+base_url_env: GLYCODA_BASE_URL
+temperature: 0.7
+supports_tool_calling: true
+

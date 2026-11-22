@@ -1,0 +1,8 @@
+name: deepseek-r1-distill-llama-8b
+provider: openai_compatible
+model: deepseek-r1-llama-8b-agent-test
+api_key_env: GLYCODA_API_KEY
+base_url_env: GLYCODA_BASE_URL
+temperature: 0.7
+supports_tool_calling: true
+

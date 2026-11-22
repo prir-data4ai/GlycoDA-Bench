@@ -1,0 +1,9 @@
+# 648-task stratified GlycoForge benchmark.
+# Override count on CLI: --max-datasets 50
+seeds: [42]
+output_dir: outputs
+datasets: []
+datasets_root: data/glycoforge_benchmark_648
+dataset_glob: "gf_case_*"
+# null = include every matching directory (can be heavy: N_models x N_cases API calls)
+max_datasets: null

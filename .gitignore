@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Environments and credentials
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+configs/api.yaml
+configs/api.local*.yaml
+configs/**/*private*.yaml
+*.pem
+*.key
+
+# Benchmark data and evaluator-only truth
+/data/
+/glycoforge_benchmark_648/
+/_private_hidden_truth/
+**/_private_hidden_truth/
+
+# Generated runs and local scratch
+/outputs/
+/tmp_*/
+*.log
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Superpowers execution ledger
+.superpowers/
+

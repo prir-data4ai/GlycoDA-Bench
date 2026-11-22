@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: If you use GlycoDA-Bench, please cite the accompanying manuscript.
+title: "GlycoDA-Bench: Evaluating LLM-Based Agent Workflow Reasoning through Glycomics Data Analysis"
+type: software
+version: 3.0.0
+date-released: 2026-11-23
+repository-code: https://github.com/evolan17/GlycoAgentBench-v3
+authors:
+  - {family-names: Zhang, given-names: Bo-Wen}
+  - {family-names: He, given-names: Jinmei}
+  - {family-names: Yu, given-names: Shuang}
+  - {family-names: Hu, given-names: Siyu}
+  - {family-names: Bojar, given-names: Daniel}
+  - {family-names: Zhu, given-names: Xiaobin}
+  - {family-names: Cao, given-names: Kaibo}
+  - {family-names: Yang, given-names: Zhihu}
+  - {family-names: Huang, given-names: Shuo}
+  - {family-names: Zhang, given-names: Jihong}
+  - {family-names: Yin, given-names: Xu-Cheng}
+keywords:
+  - glycomics
+  - benchmark
+  - LLM agents
+  - scientific workflow reasoning
+license: MIT
+

@@ -1,0 +1,6 @@
+# 3 models × 10 GlycoForge cases = 30 runs.
+seeds: [42]
+output_dir: outputs
+datasets_root: data/glycoforge_benchmark_500
+dataset_glob: "gf_case_*"
+max_datasets: 10
