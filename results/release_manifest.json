@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "dataset_release": "manuscript-v1",
+  "dataset_repository": "xiaokui17/glycoforge_benchmark_648",
+  "scenario_index_file": "scenario_index.csv",
+  "scenario_index_sha256": "144af14a8f67a39dfc72277f9bdfeb97046013912c8ac6bd710ec3fc7c55799e",
+  "model_count": 22,
+  "case_count_per_model": 648,
+  "aggregation_rule": "Means use rows with run_status=completed; skipped rows remain in counts. Model identifiers are normalized by configs/models/reported_models.yaml; raw model_name values remain recorded in raw_model_name_counts.",
+  "metrics": [
+    "plan_score",
+    "execution_score",
+    "decision_score",
+    "result_score",
+    "batch_reduction_score",
+    "bio_preservation_score",
+    "de_recovery_score",
+    "de_f1"
+  ],
+  "strata": [
+    "task_family",
+    "complexity_tier",
+    "signal_regime"
+  ],
+  "models": [
+    {
+      "normalized_model_name": "gpt-5.4",
+      "reported_model_id": "api_azure_openai_gpt-5.4-2026-03-05",
+      "evaluation_timestamp": "2026-04-11T15:41:27",
+      "source_result_file": "leaderboard_20260411_154127_gpt5.4.csv",
+      "source_sha256": "6bbe315d8074e25e5e74b39faab4f9c054cae808d2a91966c139c8abbb86d07d",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "gpt5.4": 648
+      },
+      "failure_type_counts": {
+        "none": 646,
+        "wrong_oracle": 2
+      }
+    },
+    {
+      "normalized_model_name": "claude-4.6-opus",
+      "reported_model_id": "api_naci_default_claude-opus-4-6",
+      "evaluation_timestamp": "2026-04-11T16:35:16",
+      "source_result_file": "leaderboard_20260411_163516_claude-4-6-opus.csv",
+      "source_sha256": "340334a2ecbfb967664ddd57de69835175f586721bafbeb2e15dbc56b1cc51ef",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "claude-4-6-opus": 648
+      },
+      "failure_type_counts": {
+        "none": 648
+      }
+    },
+    {
+      "normalized_model_name": "gemini-3.1-pro",
+      "reported_model_id": "api_naci_default_gemini-3.1-pro-preview",
+      "evaluation_timestamp": "2026-04-11T16:33:44",
+      "source_result_file": "leaderboard_20260411_163344_gemini-3.1-pro.csv",
+      "source_sha256": "c1053709d1f7cfbabadcf5d0a1622f5aa379cfe0a66e56ffc0c537b1baa96672",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "gemini-3.1-pro": 648
+      },
+      "failure_type_counts": {
+        "none": 648
+      }
+    },
+    {
+      "normalized_model_name": "glm-5.1",
+      "reported_model_id": "cdp-glm-5-1-fp8",
+      "evaluation_timestamp": "2026-04-11T01:17:39",
+      "source_result_file": "leaderboard_20260411_011739_glm-5-1-fp8.csv",
+      "source_sha256": "003539d61bab38a674d288d30e190ca473103a5d1fa168d07aa942022bd092e2",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "glm-5-1-fp8": 636,
+        "stream-server-glm5.1": 12
+      },
+      "failure_type_counts": {
+        "none": 631,
+        "skipped": 12,
+        "wrong_oracle": 5
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-max",
+      "reported_model_id": "api_ali_qwen-max-2025-01-25",
+      "evaluation_timestamp": "2026-04-11T01:51:26",
+      "source_result_file": "leaderboard_20260411_015126_qwen3-max.csv",
+      "source_sha256": "059d365b029cc1d4e7c2bb41603b2a364f75d829029fcba554a0ab1340cdef67",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-max": 648
+      },
+      "failure_type_counts": {
+        "none": 648
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-1.7b-base",
+      "reported_model_id": "qwen3-1.7b-base-agent-test",
+      "evaluation_timestamp": "2026-04-10T10:03:24",
+      "source_result_file": "leaderboard_20260410_100324_qwen3-1.7b-base-agent-test.csv",
+      "source_sha256": "4331a83ec1008e84856d092ab42dfcbdce12fb962b98f8ed90464bd62681e901",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-1.10b-base-agent-test": 1,
+        "qwen3-1.11b-base-agent-test": 1,
+        "qwen3-1.7b-base-agent-test": 644,
+        "qwen3-1.8b-base-agent-test": 1,
+        "qwen3-1.9b-base-agent-test": 1
+      },
+      "failure_type_counts": {
+        "empty_plan": 324,
+        "invalid_plan": 199,
+        "none": 110,
+        "skipped": 5,
+        "wrong_oracle": 10
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-1.7b-instruct",
+      "reported_model_id": "qwen3-1.7b-instruct-agent-test",
+      "evaluation_timestamp": "2026-04-10T10:01:13",
+      "source_result_file": "leaderboard_20260410_100113_qwen3-1.7b-instruct-agent-test.csv",
+      "source_sha256": "d4873e7fc4e016fabb3ebdb788996a7e52ea3218908009289445bcf76e797017",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-1.7b-instruct-agent-test": 648
+      },
+      "failure_type_counts": {
+        "invalid_plan": 502,
+        "none": 134,
+        "wrong_oracle": 12
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-1.7b-thinking",
+      "reported_model_id": "qwen3-1.7b-instruct-agent-test",
+      "evaluation_timestamp": "2026-04-10T10:42:31",
+      "source_result_file": "leaderboard_20260410_104231_qwen3-1.7b-thinking-agent-test.csv",
+      "source_sha256": "b6f3b7e731ae358cb3b54e9488887ab09eaf7e0c4697fde1aee2845b03fcb46a",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-1.7b-thinking-agent-test": 648
+      },
+      "failure_type_counts": {
+        "invalid_plan": 377,
+        "none": 260,
+        "wrong_oracle": 11
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-4b-base",
+      "reported_model_id": "qwen3-4b-base-agent-test",
+      "evaluation_timestamp": "2026-04-10T11:34:28",
+      "source_result_file": "leaderboard_20260410_113428_qwen3-4b-base-agent-test.csv",
+      "source_sha256": "0ac29bcbd5a83f85133190922644b7a1df744f57a90e72054f69e3cb850f89fd",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-4b-base-agent-test": 648
+      },
+      "failure_type_counts": {
+        "invalid_plan": 1,
+        "none": 641,
+        "wrong_oracle": 6
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-4b-instruct",
+      "reported_model_id": "qwen3-4b-instruct-agent-test",
+      "evaluation_timestamp": "2026-04-10T11:34:49",
+      "source_result_file": "leaderboard_20260410_113449_qwen3-4b-instruct-agent-test.csv",
+      "source_sha256": "a254e74ba627ce04027fca5a7e68dc0905c9e449fe568ea868305a2e4ad01822",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-4b-instruct-agent-test": 648
+      },
+      "failure_type_counts": {
+        "none": 648
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-4b-thinking",
+      "reported_model_id": "qwen3-4b-thinking-agent-test",
+      "evaluation_timestamp": "2026-04-10T11:34:40",
+      "source_result_file": "leaderboard_20260410_113440_qwen3-4b-thinking-agent-test.csv",
+      "source_sha256": "1ab46cb6ec470c30fcfbdaa369eedaa0010fdb138b754e9a3e42c27da45928ec",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-4b-thinking-agent-test": 648
+      },
+      "failure_type_counts": {
+        "none": 648
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-8b-base",
+      "reported_model_id": "qwen3-8b-base-agent-test",
+      "evaluation_timestamp": "2026-04-10T08:55:26",
+      "source_result_file": "leaderboard_20260410_085526_qwen3-8b-base-agent-test.csv",
+      "source_sha256": "2fccbfd2134c2d58e8abbbc4f87c832d6d0318cf05636bbdd96d63ccef4c2359",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-8b-base-agent-test": 648
+      },
+      "failure_type_counts": {
+        "none": 634,
+        "wrong_oracle": 14
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-8b-instruct",
+      "reported_model_id": "qwen3-8b-instruct-agent-test",
+      "evaluation_timestamp": "2026-04-10T09:08:01",
+      "source_result_file": "leaderboard_20260410_090801_qwen3-8b-instruct-agent-test.csv",
+      "source_sha256": "855fb181ebb76e8c86b7cd9be2069d095313601a651ddacbb763ca7b06a38c18",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-8b-instruct-agent-test": 648
+      },
+      "failure_type_counts": {
+        "none": 648
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-8b-thinking",
+      "reported_model_id": "qwen3-8b-thinking-agent-test",
+      "evaluation_timestamp": "2026-04-10T10:44:02",
+      "source_result_file": "leaderboard_20260410_104402_qwen3-8b-thinking-agent-test.csv",
+      "source_sha256": "a55dbc04a200b263605c9a3fa7153cb0fd0086d5395ea0ae9db25d84159e0199",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-8b-thinking-agent-test": 648
+      },
+      "failure_type_counts": {
+        "invalid_plan": 1,
+        "none": 646,
+        "wrong_oracle": 1
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-14b-base",
+      "reported_model_id": "qwen3-14b-base-agent-test",
+      "evaluation_timestamp": "2026-04-10T08:37:44",
+      "source_result_file": "leaderboard_20260410_083744_stream-server-qwen3-14b-base.csv",
+      "source_sha256": "a48910d26fca3dbf0a6315553954d72afa2cbe2e967df1828b0c79281cddb08c",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "stream-server-qwen3-14b-base": 648
+      },
+      "failure_type_counts": {
+        "none": 645,
+        "wrong_oracle": 3
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-14b-instruct",
+      "reported_model_id": "qwen3-14b-instruct-agent-test",
+      "evaluation_timestamp": "2026-04-10T09:04:02",
+      "source_result_file": "leaderboard_20260410_090402_stream-server-qwen3-14b-ins.csv",
+      "source_sha256": "7ff320fae51c9ec1d5cf942bc46e0d9aa5d5db77dd7ad60810859008f2763f49",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "stream-server-qwen3-14b-ins": 648
+      },
+      "failure_type_counts": {
+        "none": 648
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-14b-thinking",
+      "reported_model_id": "qwen3-14b-instruct-agent-test",
+      "evaluation_timestamp": "2026-04-10T10:43:24",
+      "source_result_file": "leaderboard_20260410_104324_stream-server-qwen3-14b-thinking.csv",
+      "source_sha256": "658b4448c9cdbc851d65ec4b7310aa58687f30ef39c2b97114e452f2b431bde6",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "stream-server-qwen3-14b-thinking": 648
+      },
+      "failure_type_counts": {
+        "none": 647,
+        "wrong_oracle": 1
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-32b-instruct",
+      "reported_model_id": "qwen3-32b-instruct-agent-test",
+      "evaluation_timestamp": "2026-04-10T12:22:24",
+      "source_result_file": "leaderboard_20260410_122224_qwen3-32b-instruct-agent-test.csv",
+      "source_sha256": "b5e5ac8e42fcf49d7af339cc6a7fb287447b64e0057e03a6a93d4b9109805305",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "qwen3-32b-instruct-agent-test": 648
+      },
+      "failure_type_counts": {
+        "invalid_plan": 2,
+        "none": 643,
+        "wrong_oracle": 3
+      }
+    },
+    {
+      "normalized_model_name": "qwen3-32b-thinking",
+      "reported_model_id": "qwen3-32b-thinking-agent-test",
+      "evaluation_timestamp": "2026-04-10T13:28:29",
+      "source_result_file": "leaderboard_20260410_132829_stream-server-qwen3-32b-thinking.csv",
+      "source_sha256": "46026235ce274fb9096f41d13662c9ca7e464b2ecec4bc9dab4721a005661d4a",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "stream-server-qwen3-32b-thinking": 648
+      },
+      "failure_type_counts": {
+        "invalid_plan": 8,
+        "none": 636,
+        "skipped": 4
+      }
+    },
+    {
+      "normalized_model_name": "llama-3.1-8b-instruct",
+      "reported_model_id": "llama3.1-8b-instruct-agent-test",
+      "evaluation_timestamp": "2026-04-10T11:21:30",
+      "source_result_file": "leaderboard_20260410_112130_llama3.1-8b-instruct-agent-test.csv",
+      "source_sha256": "5bf580974a3811972b3be0937c35a8e7b8a5cd7f6fde0cb58eb984aa0a29940f",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "llama3.1-8b-instruct-agent-test": 648
+      },
+      "failure_type_counts": {
+        "invalid_plan": 194,
+        "none": 274,
+        "wrong_oracle": 180
+      }
+    },
+    {
+      "normalized_model_name": "deepseek-v3.2-thinking",
+      "reported_model_id": "DeepSeek-V3.2-1202-32k",
+      "evaluation_timestamp": "2026-04-11T01:03:22",
+      "source_result_file": "leaderboard_20260411_010322_deepseek-v3.2-thinking-agent-test.csv",
+      "source_sha256": "3d482caf02339e0d1ca37e69360248ed14d937a1f53244238882c6586097d227",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "deepseek-v3.2-thinking-agent-test": 648
+      },
+      "failure_type_counts": {
+        "none": 598,
+        "wrong_oracle": 50
+      }
+    },
+    {
+      "normalized_model_name": "deepseek-r1-distill-llama-8b",
+      "reported_model_id": "deepseek-r1-llama-8b-agent-test",
+      "evaluation_timestamp": "2026-04-10T13:28:25",
+      "source_result_file": "leaderboard_20260410_132825_stream-server-deepseek-r1-llama-8b-instruct.csv",
+      "source_sha256": "0e49992fe149437ca597989ffeb061e4cd2696dfa0432c51b1d9fc40bfaa22bc",
+      "row_count": 648,
+      "unique_case_ids": 648,
+      "raw_model_name_counts": {
+        "stream-server-deepseek-r1-llama-8b-instruct": 648
+      },
+      "failure_type_counts": {
+        "invalid_plan": 36,
+        "none": 462,
+        "wrong_oracle": 150
+      }
+    }
+  ]
+}
