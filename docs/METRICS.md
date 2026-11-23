@@ -99,8 +99,8 @@ reported in `aspect_details` but do not replace the continuous manuscript BSP.
 
 ## Implementation
 
-The authoritative implementation is `src/metrics/aspect_evaluator.py`. The public
-top-level keys are:
+For `aspect-v3-eleven-metric` evaluations, the authoritative implementation is
+`src/metrics/aspect_evaluator.py`. The public top-level keys are:
 
 ```text
 core_workflow_correctness, case_awareness, parameter_soundness,
@@ -108,4 +108,8 @@ workflow_economy, diagnostic_reasoning, action_selection, audit_closure,
 de_set_recovery, de_ranking_quality, batch_removal_quality,
 biological_signal_preservation
 ```
+
+The unchanged 22-system manuscript archive uses the separately versioned
+`legacy-v1-report` contract. Its compact summaries are not outputs of this evaluator.
+See `docs/RESULT_SCHEMAS.md` before comparing or regenerating result tables.
 

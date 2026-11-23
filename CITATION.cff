@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: If you use GlycoDA-Bench, please cite the accompanying manuscript.
 title: "GlycoDA-Bench: Evaluating LLM-Based Agent Workflow Reasoning through Glycomics Data Analysis"
 type: software
-version: 3.0.0
+version: 3.0.1
 date-released: 2026-11-23
 repository-code: https://github.com/evolan17/GlycoDA-Bench
 authors:

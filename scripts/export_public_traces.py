@@ -40,16 +40,38 @@ SENSITIVE_KEYS = {
     "raw_response",
     "provider_response",
 }
-WINDOWS_ABSOLUTE = re.compile(r"^[A-Za-z]:[\\/]")
-UNIX_ABSOLUTE = re.compile(r"^/(?:home|Users|private|tmp|var|mnt|opt)/")
+WINDOWS_ABSOLUTE_ANY = re.compile(r"(?<![A-Za-z0-9_])[A-Za-z]:[\\/][^\s\"'<>]+")
+UNIX_ABSOLUTE_ANY = re.compile(r"(?<![A-Za-z0-9_])/(?:home|Users|private|tmp|var|mnt|opt)/[^\s\"'<>]+")
+URL_ANY = re.compile(r"https?://[^\s\"'<>]+", flags=re.IGNORECASE)
+SECRET_ANY = re.compile(
+    r"(?i)(?:\bbearer\s+[A-Za-z0-9._:-]{8,}|\bsk-[A-Za-z0-9_-]{8,}|"
+    r"\b(?:api[_-]?key|access[_-]?token|refresh[_-]?token)\s*[:=]\s*[^\s,;]+)"
+)
 
 
 def _artifact_uri(value: str) -> str:
-    if WINDOWS_ABSOLUTE.match(value):
+    if re.match(r"^[A-Za-z]:[\\/]", value):
         name = PureWindowsPath(value).name
     else:
         name = Path(value).name
     return f"artifact://{name or 'redacted'}"
+
+
+def _replace_path(match: re.Match[str]) -> str:
+    raw = match.group(0)
+    suffix = ""
+    while raw and raw[-1] in ".,;:)]}":
+        suffix = raw[-1] + suffix
+        raw = raw[:-1]
+    return _artifact_uri(raw) + suffix
+
+
+def _sanitize_string(value: str) -> str:
+    value = WINDOWS_ABSOLUTE_ANY.sub(_replace_path, value)
+    value = UNIX_ABSOLUTE_ANY.sub(_replace_path, value)
+    value = URL_ANY.sub("<redacted-url>", value)
+    value = SECRET_ANY.sub("<redacted-secret>", value)
+    return value
 
 
 def sanitize_for_publication(value: Any) -> Any:
@@ -63,8 +85,8 @@ def sanitize_for_publication(value: Any) -> Any:
         return [sanitize_for_publication(item) for item in value]
     if isinstance(value, tuple):
         return [sanitize_for_publication(item) for item in value]
-    if isinstance(value, str) and (WINDOWS_ABSOLUTE.match(value) or UNIX_ABSOLUTE.match(value)):
-        return _artifact_uri(value)
+    if isinstance(value, str):
+        return _sanitize_string(value)
     return value
 
 

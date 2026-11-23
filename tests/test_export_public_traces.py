@@ -15,6 +15,9 @@ def test_sanitizer_removes_credentials_endpoints_and_absolute_paths() -> None:
         "llm_total_tokens": 17,
         "input_csv": windows_path,
         "nested": [{"output": unix_path, "status": "ok"}],
+        "message": f"loaded {windows_path} before execution",
+        "note": "Authorization: " + "Bear" + "er sk-live-example-token-value",
+        "service": "retry https://internal.example/v1 after timeout",
     }
 
     sanitized = sanitize_for_publication(payload)
@@ -24,6 +27,12 @@ def test_sanitizer_removes_credentials_endpoints_and_absolute_paths() -> None:
     assert sanitized["llm_total_tokens"] == 17
     assert sanitized["input_csv"] == "artifact://abundance.csv"
     assert sanitized["nested"][0]["output"] == "artifact://result.csv"
+    assert windows_path not in sanitized["message"]
+    assert "artifact://abundance.csv" in sanitized["message"]
+    assert "Bearer" not in sanitized["note"]
+    assert "sk-live" not in sanitized["note"]
+    assert "https://" not in sanitized["service"]
+    assert "<redacted-url>" in sanitized["service"]
 
 
 def test_export_keeps_plan_trace_and_metrics_but_excludes_raw_calls_and_path_fields(tmp_path: Path) -> None:

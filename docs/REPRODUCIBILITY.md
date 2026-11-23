@@ -65,6 +65,14 @@ Completed, failed, skipped, and resumed jobs remain distinguishable in the per-c
 result status fields, and failed or incomplete runs are not silently replaced by
 successful reruns in aggregate tables.
 
+## Result schema selection
+
+The tagged manuscript archive uses `legacy-v1-report` and preserves the historical
+22-system CSV values unchanged. New runs from `src/metrics/aspect_evaluator.py` use
+`aspect-v3-eleven-metric`. A table or figure must state its schema ID; converting or
+rescoring archived rows produces a new, separately labeled artifact. The complete
+contract is in `docs/RESULT_SCHEMAS.md`.
+
 ## Seeds, retries, and failures
 
 The default benchmark seed is 42 unless overridden. `--job-retries` retries only
@@ -84,6 +92,10 @@ inputs belong only to this release.
 `xiaokui17/GlycoDA-Bench` is the **v2 paired/coupled extension**, whose 216 paired cases
 contain two realized compositional blocks. It is released as a supplementary benchmark;
 no manuscript model scores are associated with v2.
+
+The immutable dataset revisions are `manuscript-v1.0.0` (commit
+`0c3aacd0045ec3e87476689e8187376c3e41cd5c`) and `v2.0.0` (commit
+`a582af86c021a39a65fa6fedb39437803449dd68`).
 
 ## Benchmark construction record
 

@@ -19,10 +19,10 @@ not contain the benchmark matrices or evaluator hidden truth.
 
 - Manuscript reproduction release (648 cases, evaluator truth, and 22-system
   per-case results):
-  <https://huggingface.co/datasets/xiaokui17/glycoforge_benchmark_648>
+  <https://huggingface.co/datasets/xiaokui17/glycoforge_benchmark_648/tree/manuscript-v1.0.0>
 - V2 paired/coupled extension (648 cases with realized two-block scenarios):
-  <https://huggingface.co/datasets/xiaokui17/GlycoDA-Bench>
-- Experiment code: <https://github.com/evolan17/GlycoDA-Bench>
+  <https://huggingface.co/datasets/xiaokui17/GlycoDA-Bench/tree/v2.0.0>
+- Experiment code: <https://github.com/evolan17/GlycoDA-Bench/tree/v3.0.1>
 - Data generator framework: <https://github.com/BojarLab/GlycoForge>
 
 The manuscript reproduction release is the data release associated with the reported
@@ -32,6 +32,11 @@ distinguishes the `participant`, `evaluator_truth`, and `results` components. Ev
 truth must never be mounted into an evaluated agent's runtime, even when it is publicly
 archived for post-publication reproducibility. See
 [`docs/DATA_AND_CODE_AVAILABILITY.md`](docs/DATA_AND_CODE_AVAILABILITY.md).
+
+The archived 22-system CSVs retain the historical `legacy-v1-report` scoring schema.
+The code also provides the `aspect-v3-eleven-metric` evaluator for new or explicitly
+rescored runs. These schemas are versioned separately and are never silently mixed;
+see [`docs/RESULT_SCHEMAS.md`](docs/RESULT_SCHEMAS.md).
 
 ## Repository contents
 
@@ -45,6 +50,7 @@ docs/
   DATA_AND_CODE_AVAILABILITY.md
   METRICS.md
   REPRODUCIBILITY.md
+  RESULT_SCHEMAS.md
   WORKFLOW_GROUND_TRUTH.md
   V1_TO_V3.md
 scripts/
@@ -55,7 +61,7 @@ src/
   planner/                    # full and iterative planning
   executor/                   # tool execution
   tools/                      # glycomics analysis tools
-  metrics/                    # eleven manuscript metrics
+  metrics/                    # current eleven-metric evaluator
 tests/
 ```
 

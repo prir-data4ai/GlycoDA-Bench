@@ -21,6 +21,7 @@ REQUIRED_FILES = {
     "docs/DATA_AND_CODE_AVAILABILITY.md",
     "docs/WORKFLOW_GROUND_TRUTH.md",
     "docs/V1_TO_V3.md",
+    "docs/RESULT_SCHEMAS.md",
     ".github/workflows/tests.yml",
 }
 METRICS = {
@@ -52,6 +53,8 @@ def test_readme_and_availability_name_public_artifacts() -> None:
     assert "participant-facing" in text
     assert "evaluator" in text.lower()
     assert "hidden truth" in text.lower()
+    assert "manuscript-v1.0.0" in text
+    assert "v2.0.0" in text
 
 
 def test_release_metadata_separates_manuscript_v1_results_from_v2_extension() -> None:
@@ -125,4 +128,6 @@ def test_package_metadata_matches_the_release_and_exposes_the_benchmark_cli() ->
     assert project["version"] == Path("VERSION").read_text(encoding="utf-8").strip()
     assert project["requires-python"] == ">=3.10"
     assert project["scripts"]["glyco-bench"] == "src.app.run_benchmark:main"
+    assert project["license"] == "Apache-2.0"
+    assert "LICENSE" in project["license-files"]
 

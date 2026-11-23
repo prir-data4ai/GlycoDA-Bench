@@ -43,12 +43,13 @@ PLACEHOLDER_MARKERS = (
     "os.environ",
     "<redacted>",
     "<placeholder>",
+    "<provider",
     "changeme",
     "your_",
 )
 
-WINDOWS_ABSOLUTE_RE = re.compile(r"(?<![A-Za-z0-9_])[A-Za-z]:\\")
-UNIX_HOME_RE = re.compile(r"/(?:home|Users)/[^/\s]+/")
+WINDOWS_ABSOLUTE_RE = re.compile(r"(?<![A-Za-z0-9_])[A-Za-z]:[\\/]")
+UNIX_HOME_RE = re.compile(r"(?<![A-Za-z0-9_])/(?:home|Users|private|tmp|var|mnt|opt)/[^\s]*")
 INTERNAL_HOST_RE = re.compile(
     r"(?:https?://)?(?:"
     r"10(?:\.\d{1,3}){3}|"
@@ -59,8 +60,8 @@ INTERNAL_HOST_RE = re.compile(
     flags=re.IGNORECASE,
 )
 CREDENTIAL_ASSIGNMENT_RE = re.compile(
-    r"(?im)^\s*(?:api[_-]?key|auth[_-]?token|access[_-]?token|"
-    r"ss_auth_token|authorization)\s*[:=]\s*['\"]?([^\s#'\"]+)"
+    r"(?im)['\"]?(?:api[_-]?key|auth[_-]?token|access[_-]?token|"
+    r"ss_auth_token|authorization)['\"]?\s*[:=]\s*['\"]?([^\s#,'\"]+)"
 )
 PYTHON_CREDENTIAL_RE = re.compile(
     r"(?im)^\s*(?:api[_-]?key|auth[_-]?token|access[_-]?token|"
@@ -106,6 +107,7 @@ def validate_repository(root: Path) -> list[str]:
         # ``git ls-files`` includes paths staged or deleted only in the working tree.
         # A release candidate should validate the files that will actually be present.
         if not path.is_file():
+            findings.append(f"tracked path missing from working tree: {_relative(path, root)}")
             continue
         rel = _relative(path, root)
         rel_parts = path.relative_to(root).parts

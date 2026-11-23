@@ -1,7 +1,12 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "dataset_release": "manuscript-v1",
   "dataset_repository": "xiaokui17/glycoforge_benchmark_648",
+  "dataset_revision": "manuscript-v1.0.0",
+  "dataset_commit": "0c3aacd0045ec3e87476689e8187376c3e41cd5c",
+  "metric_schema_id": "legacy-v1-report",
+  "current_evaluator_schema_id": "aspect-v3-eleven-metric",
+  "metric_schema_note": "These compact tables summarize the unchanged historical manuscript result CSVs. They are not outputs of the current eleven-metric aspect evaluator; see docs/RESULT_SCHEMAS.md.",
   "scenario_index_file": "scenario_index.csv",
   "scenario_index_sha256": "144af14a8f67a39dfc72277f9bdfeb97046013912c8ac6bd710ec3fc7c55799e",
   "model_count": 22,

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -21,6 +22,11 @@ SUMMARY_METRICS = (
     "de_f1",
 )
 STRATA = ("task_family", "complexity_tier", "signal_regime")
+ALLOWED_RUN_STATUSES = {"completed", "skipped"}
+METRIC_SCHEMA_ID = "legacy-v1-report"
+CURRENT_EVALUATOR_SCHEMA_ID = "aspect-v3-eleven-metric"
+DATASET_REVISION = "manuscript-v1.0.0"
+DATASET_COMMIT = "0c3aacd0045ec3e87476689e8187376c3e41cd5c"
 
 
 def _sha256(path: Path) -> str:
@@ -32,16 +38,42 @@ def _sha256(path: Path) -> str:
 
 
 def _completed(frame: pd.DataFrame) -> pd.DataFrame:
-    if "run_status" not in frame.columns:
-        return frame
-    return frame[frame["run_status"].astype(str).str.lower() == "completed"]
+    return frame[frame["run_status"].astype(str).str.strip().str.lower() == "completed"]
 
 
 def _mean(frame: pd.DataFrame, column: str) -> float:
-    if column not in frame.columns:
-        return 0.0
-    values = pd.to_numeric(frame[column], errors="coerce")
-    return float(values.mean()) if not values.isna().all() else 0.0
+    values = pd.to_numeric(frame[column], errors="raise")
+    return float(values.mean())
+
+
+def _validate_result_schema(frame: pd.DataFrame, *, source_name: str) -> None:
+    required = {"dataset_id", "run_status", *SUMMARY_METRICS}
+    missing = sorted(required - set(frame.columns))
+    if missing:
+        raise ValueError(f"{source_name}: missing required result columns: {missing}")
+
+    statuses = frame["run_status"].astype(str).str.strip().str.lower()
+    invalid_statuses = sorted(set(statuses) - ALLOWED_RUN_STATUSES)
+    if invalid_statuses:
+        raise ValueError(f"{source_name}: invalid run_status values: {invalid_statuses}")
+
+    completed = statuses == "completed"
+    if not completed.any():
+        raise ValueError(f"{source_name}: no completed rows available for aggregation")
+    for metric in SUMMARY_METRICS:
+        try:
+            values = pd.to_numeric(frame[metric], errors="raise")
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"{source_name}: non-numeric metric values in {metric}") from exc
+        missing_completed = completed & values.isna()
+        if missing_completed.any():
+            raise ValueError(f"{source_name}: completed rows have missing metric values in {metric}")
+        finite_completed = values[completed].map(math.isfinite)
+        if not finite_completed.all():
+            raise ValueError(f"{source_name}: non-finite metric values in {metric}")
+        outside = values[completed].lt(0) | values[completed].gt(1)
+        if outside.any():
+            raise ValueError(f"{source_name}: metric values outside [0, 1] in {metric}")
 
 
 def _summary_row(frame: pd.DataFrame, *, model_name: str) -> dict[str, Any]:
@@ -99,8 +131,7 @@ def build_public_result_artifacts(
         if not source_path.is_file():
             raise FileNotFoundError(f"missing source result CSV: {source_name}")
         frame = pd.read_csv(source_path)
-        if "dataset_id" not in frame.columns:
-            raise ValueError(f"{source_name}: missing dataset_id column")
+        _validate_result_schema(frame, source_name=source_name)
         actual_ids = set(frame["dataset_id"].astype(str))
         if len(frame) != expected_case_count or frame["dataset_id"].nunique() != expected_case_count:
             raise ValueError(
@@ -162,9 +193,18 @@ def build_public_result_artifacts(
     pd.DataFrame(model_rows).to_csv(output_dir / "model_summary.csv", index=False)
     pd.DataFrame(stratum_rows).to_csv(output_dir / "stratified_summary.csv", index=False)
     release_manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "dataset_release": "manuscript-v1",
         "dataset_repository": "xiaokui17/glycoforge_benchmark_648",
+        "dataset_revision": DATASET_REVISION,
+        "dataset_commit": DATASET_COMMIT,
+        "metric_schema_id": METRIC_SCHEMA_ID,
+        "current_evaluator_schema_id": CURRENT_EVALUATOR_SCHEMA_ID,
+        "metric_schema_note": (
+            "These compact tables summarize the unchanged historical manuscript result CSVs. "
+            "They are not outputs of the current eleven-metric aspect evaluator; see "
+            "docs/RESULT_SCHEMAS.md."
+        ),
         "scenario_index_file": scenario_index.name,
         "scenario_index_sha256": _sha256(scenario_index),
         "model_count": len(release_models),

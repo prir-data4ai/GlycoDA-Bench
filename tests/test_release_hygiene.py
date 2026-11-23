@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 import subprocess
 
+import pytest
+
 from scripts import validate_release
 from scripts.validate_release import validate_repository
 
@@ -17,12 +19,31 @@ def test_validator_rejects_credentials_internal_hosts_and_local_paths(tmp_path: 
     _write(tmp_path, "configs/models/bad.yaml", "api_key: sk-live-example-not-a-placeholder\n")
     _write(tmp_path, "src/bad.py", "URL = 'http://service.production.polaris/v1'\n")
     _write(tmp_path, "docs/bad.md", r"Run from D:\private\experiment" + "\n")
+    _write(tmp_path, "examples/bad.json", '{"api_key":"sk-live-quoted-json-value"}\n')
 
     findings = validate_repository(tmp_path)
 
     assert any("credential-like value" in item for item in findings)
     assert any("internal host" in item for item in findings)
     assert any("absolute Windows path" in item for item in findings)
+
+
+@pytest.mark.parametrize(
+    ("relative", "content", "expected"),
+    [
+        ("examples/minified.json", '{"api_key":"sk-live-minified-value"}\n', "credential-like value"),
+        ("docs/forward-slash.md", "C:/work/private.csv\n", "absolute Windows path"),
+        ("docs/tmp-path.md", "/tmp/private.csv\n", "absolute user path"),
+    ],
+)
+def test_validator_rejects_each_minified_secret_and_path_form(
+    tmp_path: Path, relative: str, content: str, expected: str
+) -> None:
+    _write(tmp_path, relative, content)
+
+    findings = validate_repository(tmp_path)
+
+    assert any(expected in item and relative in item for item in findings)
 
 
 def test_validator_rejects_forbidden_release_directories(tmp_path: Path) -> None:
@@ -50,13 +71,14 @@ def test_validator_accepts_environment_placeholders(tmp_path: Path) -> None:
     assert validate_repository(tmp_path) == []
 
 
-def test_validator_ignores_tracked_files_deleted_from_worktree(
+def test_validator_rejects_tracked_files_deleted_from_worktree(
     tmp_path: Path, monkeypatch
 ) -> None:
     deleted = tmp_path / "configs/models/deleted.yaml"
     monkeypatch.setattr(validate_release, "_candidate_files", lambda root: [deleted])
 
-    assert validate_repository(tmp_path) == []
+    findings = validate_repository(tmp_path)
+    assert any("tracked path missing from working tree" in item for item in findings)
 
 
 def test_runtime_dataset_loader_is_tracked() -> None:

@@ -4,10 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "glycoagentbench"
-version = "3.0.0"
+version = "3.0.1"
 description = "LangChain agent benchmark for glycomics workflow recommendation"
 readme = "README.md"
 requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 dependencies = [
     "langchain>=0.3.0",
     "langchain-openai>=0.2.0",

@@ -11,7 +11,7 @@ all 648 reported benchmark cases.
 | --- | --- | --- |
 | All 648 agent-visible manuscript cases, including abundance matrices, sample/feature metadata, task cards, case manifests, and `scenario_index.csv` | Hugging Face manuscript reproduction release `xiaokui17/glycoforge_benchmark_648`, component `participant` | Public and versioned; exactly 648 unique case IDs and exact hashes associated with the reported results. |
 | Differential-feature truth, importance ordering, workflow requirements, motif truth, and clean/oracle references used only by scoring | Manuscript release component `evaluator_truth` | Public at publication for reproducibility, but never mounted into or named in an evaluated agent's context. |
-| Per-case scores for all 22 systems, failure/status fields, and exact aggregation inputs behind stratified tables and figures | Manuscript release component `results/manuscript_v1` | Public and versioned; raw provider text may be redacted if redistribution terms require it. |
+| Per-case scores for all 22 systems, failure/status fields, and exact aggregation inputs | Manuscript release component `results/manuscript_v1` | Public under the immutable `manuscript-v1.0.0` tag and explicitly labeled `legacy-v1-report`; raw provider text may be redacted if redistribution terms require it. |
 | Realized two-block paired/coupled cases | Hugging Face v2 paired/coupled extension `xiaokui17/GlycoDA-Bench` | Public supplementary release; no manuscript model scores are attributed to v2. |
 | Agent implementation, system/user prompts, structured schemas, tool descriptions and implementations, stopping/failure policy, metric implementations, rescoring scripts, tests, and model configuration templates | GitHub source repository | Public under the code license and identified by a Git tag/commit. |
 | Complete 22-system inventory, model/API identifiers, decoding settings, evaluation timestamps, source result filenames, run count, and failure policy | GitHub (`configs/models/reported_models.yaml` and `docs/REPRODUCIBILITY.md`) | Public; values must match manuscript tables and captions. |
@@ -25,11 +25,14 @@ all 648 reported benchmark cases.
 The exact 648 cases associated with the manuscript results are the **manuscript
 reproduction release** at:
 
-<https://huggingface.co/datasets/xiaokui17/glycoforge_benchmark_648>
+<https://huggingface.co/datasets/xiaokui17/glycoforge_benchmark_648/tree/manuscript-v1.0.0>
 
 The supplementary **v2 paired/coupled extension** is available at:
 
-<https://huggingface.co/datasets/xiaokui17/GlycoDA-Bench>
+<https://huggingface.co/datasets/xiaokui17/GlycoDA-Bench/tree/v2.0.0>
+
+The tags resolve to commits `0c3aacd0045ec3e87476689e8187376c3e41cd5c` and
+`a582af86c021a39a65fa6fedb39437803449dd68`, respectively.
 
 Each dataset card and release manifest identifies the `participant` files: observed
 matrices, sample and feature metadata, task descriptions, and the structural manifest
@@ -60,6 +63,10 @@ representative execution traces requested by the reviewers.
 Provider-restricted raw text can be replaced by a sanitized trace that preserves the
 observed tool sequence, intermediate observations, judgments, actions, and failure
 labels.
+
+The eleven-metric evaluator is the `aspect-v3-eleven-metric` contract for new or
+explicitly rescored runs. The unchanged 22-system archive remains
+`legacy-v1-report`; `docs/RESULT_SCHEMAS.md` defines the boundary.
 
 ## Generator provenance
 
