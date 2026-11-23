@@ -1,5 +1,9 @@
 # GlycoDA-Bench Agent Evaluation Code
 
+*A ground-truth-based benchmark for evaluating LLM agents in compositional glycomics
+analysis and workflow recommendation, powered by the separately maintained GlycoForge
+generator.*
+
 This repository contains the public plan-and-execute agent scaffold, prompts,
 glycomics analysis tools, and evaluation code used by **GlycoDA-Bench**. The
 benchmark evaluates whether language-model agents can diagnose data conditions,
