@@ -42,15 +42,28 @@ All systems receive the same tool schemas and implementation.
 
 ## Models and decoding
 
-The reported inventory contains 23 systems in `configs/models/reported_models.yaml`.
+The reported inventory contains 22 systems in `configs/models/reported_models.yaml`.
 All archived model configurations use `temperature: 0.7`. API keys and endpoints are
 provided through `GLYCODA_API_KEY` and `GLYCODA_BASE_URL`; no provider credential is
 stored in the repository. Thinking variants pass `enable_thinking` and a thinking
 budget through the OpenAI-compatible request body.
 
-Exact access dates were not present in the available source archive and remain marked
-as unresolved in the manifest. Authors must confirm them before final submission rather
-than infer dates from file timestamps.
+Each model entry records the experimental model/API identifier, the detailed source
+result CSV, and the evaluation timestamp transcribed from that CSV filename. The source
+filenames do not encode a timezone, so the manifest records the local timestamp without
+inventing a UTC offset.
+
+For public result tables, `reported_models.yaml` is the authoritative normalization
+map. The original `model_name` field is retained as `raw_model_name` because two source
+CSVs contain historical aliases: 4 of 648 Qwen3-1.7B-Base rows contain malformed
+size-suffixed aliases, and 12 of 648 GLM-5.1 rows use `stream-server-glm5.1`. These are
+metadata aliases only; all 22 source CSVs contain 648 rows and 648 unique case IDs.
+
+The reported table contains one benchmark replicate per model-case combination with
+benchmark seed 42; transport retries are not counted as independent replicates.
+Completed, failed, skipped, and resumed jobs remain distinguishable in the per-case
+result status fields, and failed or incomplete runs are not silently replaced by
+successful reruns in aggregate tables.
 
 ## Seeds, retries, and failures
 
@@ -61,9 +74,27 @@ checkpoint and report metadata.
 
 ## Data and evaluator truth
 
-Participant matrices come from the versioned Hugging Face release. Evaluator truth is
-resolved separately with `GLYCOAGENT_HIDDEN_TRUTH_ROOT`. Agents must not receive this
-path, its contents, clean matrices, or generation diagnostics.
+The reported manuscript results map to the Hugging Face **manuscript reproduction
+release** at `xiaokui17/glycoforge_benchmark_648`. Its release manifests distinguish the
+`participant`, `evaluator_truth`, and `results` components. Evaluator truth is resolved
+with `GLYCOAGENT_HIDDEN_TRUTH_ROOT`; agents must not receive this path, its contents,
+clean matrices, or generation diagnostics. The 22 per-case score tables and aggregation
+inputs belong only to this release.
+
+`xiaokui17/GlycoDA-Bench` is the **v2 paired/coupled extension**, whose 216 paired cases
+contain two realized compositional blocks. It is released as a supplementary benchmark;
+no manuscript model scores are associated with v2.
+
+## Benchmark construction record
+
+Both 648-case releases were materialized specifically for GlycoDA-Bench from
+benchmark-specific scenario grids; they were not selected as pre-existing GlycoForge
+benchmarks. The manifests report GlycoForge 0.2.0 and exact generation commit
+`3e3ed302b2e3aaef1bc47c407c3528939c482a54`. The upstream source remains at
+`BojarLab/GlycoForge` under MIT and is not copied into this repository. Dataset releases
+preserve their construction scripts, scenario indexes, checksums, and per-case seeds.
+Requested and actual modes remain separate fields so the manuscript reproduction
+release's proxy cases and v2's realized paired cases are described literally.
 
 ## Reproduction checklist
 

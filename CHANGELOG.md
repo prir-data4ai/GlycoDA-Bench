@@ -8,7 +8,7 @@
 - Preserved compatible full/iterative execution, stratification, retries, and resume
   behavior.
 - Added plain-text logging and robust thinking-block parsing.
-- Added 23 sanitized reported-system configurations.
+- Added 22 sanitized reported-system configurations with source-result timestamps.
 - Added release hygiene validation, publication documentation, citation metadata, and
   continuous integration.
 

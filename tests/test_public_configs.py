@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime
 from pathlib import Path
 
 import yaml
@@ -8,15 +9,19 @@ from src.config import ModelConfig, load_model_config
 from src.llm.adapter import LLMAdapter
 
 
-def test_reported_model_inventory_has_exactly_23_public_configs() -> None:
+def test_reported_model_inventory_has_exactly_22_public_configs() -> None:
     manifest_path = Path("configs/models/reported_models.yaml")
     manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
     models = manifest["models"]
 
-    assert len(models) == 23
-    assert len({item["name"] for item in models}) == 23
-    assert len({item["config"] for item in models}) == 23
+    assert len(models) == 22
+    assert len({item["name"] for item in models}) == 22
+    assert len({item["config"] for item in models}) == 22
+    assert "qwen3-32b-base" not in {item["name"] for item in models}
     for item in models:
+        datetime.strptime(item["evaluation_timestamp"], "%Y-%m-%dT%H:%M:%S")
+        assert item["source_result_file"].startswith("leaderboard_")
+        assert item["source_result_file"].endswith(".csv")
         config_path = manifest_path.parent / item["config"]
         assert config_path.is_file(), config_path
         config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
@@ -31,7 +36,7 @@ def test_model_configs_load_with_strict_public_fields() -> None:
     paths = sorted(Path("configs/models").glob("*.yaml"))
     paths = [path for path in paths if path.name != "reported_models.yaml"]
 
-    assert len(paths) == 23
+    assert len(paths) == 22
     for path in paths:
         config = load_model_config(path)
         assert config.name

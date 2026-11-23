@@ -37,6 +37,15 @@ from src.metrics.aspect_evaluator import ASPECT_NAMES
 from src.app.run_single_model import _validate_run_dir_relative_path
 
 
+def _discover_model_files(models_dir: str | Path) -> list[Path]:
+    """Return runnable model YAML files, excluding the release inventory manifest."""
+    return sorted(
+        path
+        for path in Path(models_dir).glob("*.yaml")
+        if path.name != "reported_models.yaml"
+    )
+
+
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
     p.add_argument("--models-dir", required=True)
@@ -921,7 +930,7 @@ def main() -> None:
     try_load_dotenv()
     apply_api_runtime_config(load_api_runtime_config(args.api_config))
     bcfg = load_benchmark_config(args.benchmark_config)
-    model_files = sorted(Path(args.models_dir).glob("*.yaml"))
+    model_files = _discover_model_files(args.models_dir)
     for ex in args.exclude_models:
         model_files = [m for m in model_files if m.name != ex and str(m) != ex]
     if args.only_models:

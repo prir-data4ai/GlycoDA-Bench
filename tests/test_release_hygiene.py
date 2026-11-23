@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import subprocess
 
+from scripts import validate_release
 from scripts.validate_release import validate_repository
 
 
@@ -45,6 +46,15 @@ def test_validator_accepts_environment_placeholders(tmp_path: Path) -> None:
     _write(tmp_path, ".env.example", "GLYCODA_API_KEY=\nGLYCODA_BASE_URL=\n")
     _write(tmp_path, "src/example.py", "value = os.getenv('GLYCODA_API_KEY', '')\n")
     _write(tmp_path, "src/data/dataset.py", "DATASET_KIND = 'public-input-loader'\n")
+
+    assert validate_repository(tmp_path) == []
+
+
+def test_validator_ignores_tracked_files_deleted_from_worktree(
+    tmp_path: Path, monkeypatch
+) -> None:
+    deleted = tmp_path / "configs/models/deleted.yaml"
+    monkeypatch.setattr(validate_release, "_candidate_files", lambda root: [deleted])
 
     assert validate_repository(tmp_path) == []
 

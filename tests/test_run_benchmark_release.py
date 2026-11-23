@@ -6,6 +6,7 @@ from pathlib import Path
 
 from src.app.run_benchmark import (
     _configure_logging,
+    _discover_model_files,
     _read_dataset_manifest_meta,
     _stratified_by_scenario,
 )
@@ -20,6 +21,15 @@ def _case(root: Path, name: str, scenario: str) -> Path:
         encoding="utf-8",
     )
     return case
+
+
+def test_model_discovery_excludes_the_reported_inventory_manifest(tmp_path: Path) -> None:
+    (tmp_path / "reported_models.yaml").write_text("models: []", encoding="utf-8")
+    model = tmp_path / "qwen3-8b-instruct.yaml"
+    model.write_text("name: qwen3-8b-instruct", encoding="utf-8")
+    (tmp_path / "README.md").write_text("not a model", encoding="utf-8")
+
+    assert _discover_model_files(tmp_path) == [model]
 
 
 def test_stratified_selection_is_deterministic_and_balanced(tmp_path: Path) -> None:

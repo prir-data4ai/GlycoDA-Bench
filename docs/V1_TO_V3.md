@@ -42,11 +42,12 @@ version and label the version/commit.
 - Removes benchmark data, hidden truth, outputs, notebooks, caches, and local scripts.
 - Removes populated API files, internal service defaults, workspace IDs, and tokens.
 - Replaces provider credentials and endpoints with environment-variable templates.
-- Adds 23 sanitized reported-system configurations and a release validator.
+- Adds 22 sanitized reported-system configurations and a release validator.
 
-## Known metadata gaps
+## Model metadata correction
 
-- Exact model access dates must be confirmed by the authors.
-- No source YAML was found for the reported Qwen3 32B base member; its manifest entry is
-  explicitly marked as reconstructed from the manuscript grid.
+- The release inventory contains the 22 systems present in the detailed experimental
+  CSVs. Qwen3 32B Base is not included because it was not evaluated.
+- Per-system evaluation timestamps are transcribed from the source result filenames.
+  Their timezone was not encoded and is therefore left unspecified.
 

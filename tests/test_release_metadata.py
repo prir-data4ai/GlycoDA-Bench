@@ -19,6 +19,7 @@ REQUIRED_FILES = {
     "docs/METRICS.md",
     "docs/REPRODUCIBILITY.md",
     "docs/DATA_AND_CODE_AVAILABILITY.md",
+    "docs/WORKFLOW_GROUND_TRUTH.md",
     "docs/V1_TO_V3.md",
     ".github/workflows/tests.yml",
 }
@@ -46,10 +47,49 @@ def test_readme_and_availability_name_public_artifacts() -> None:
     text = (Path("README.md").read_text(encoding="utf-8") + "\n" + Path("docs/DATA_AND_CODE_AVAILABILITY.md").read_text(encoding="utf-8"))
 
     assert "https://huggingface.co/datasets/xiaokui17/GlycoDA-Bench" in text
-    assert "https://github.com/evolan17/GlycoAgentBench-v3" in text
+    assert "https://huggingface.co/datasets/xiaokui17/glycoforge_benchmark_648" in text
+    assert "https://github.com/evolan17/GlycoDA-Bench" in text
     assert "participant-facing" in text
     assert "evaluator" in text.lower()
     assert "hidden truth" in text.lower()
+
+
+def test_release_metadata_separates_manuscript_v1_results_from_v2_extension() -> None:
+    text = (Path("README.md").read_text(encoding="utf-8") + "\n" + Path("docs/DATA_AND_CODE_AVAILABILITY.md").read_text(encoding="utf-8")).lower()
+
+    assert "manuscript reproduction release" in text
+    assert "v2 paired/coupled extension" in text
+    assert "no manuscript model scores" in text
+
+
+def test_release_uses_apache_license_and_attributes_glycoforge() -> None:
+    license_text = Path("LICENSE").read_text(encoding="utf-8")
+    citation = yaml.safe_load(Path("CITATION.cff").read_text(encoding="utf-8"))
+    notices = Path("THIRD_PARTY_NOTICES.md").read_text(encoding="utf-8")
+
+    assert "Apache License" in license_text
+    assert "Version 2.0" in license_text
+    assert citation["license"] == "Apache-2.0"
+    assert citation["repository-code"] == "https://github.com/evolan17/GlycoDA-Bench"
+    assert "https://github.com/BojarLab/GlycoForge" in notices
+    assert "v0.2.0" in notices
+    assert "3e3ed302b2e3aaef1bc47c407c3528939c482a54" in notices
+
+
+def test_availability_assigns_every_reviewer_artifact_to_a_release_destination() -> None:
+    text = Path("docs/DATA_AND_CODE_AVAILABILITY.md").read_text(encoding="utf-8")
+
+    for phrase in (
+        "`participant`",
+        "`evaluator_truth`",
+        "`results`",
+        "all 648",
+        "representative execution traces",
+        "GlycoForge 0.2.0",
+        "3e3ed302b2e3aaef1bc47c407c3528939c482a54",
+        "evaluation timestamps",
+    ):
+        assert phrase in text
 
 
 def test_metrics_document_covers_all_eleven_metrics_and_edge_cases() -> None:

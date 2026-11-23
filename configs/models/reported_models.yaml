@@ -1,29 +1,28 @@
-schema_version: 1
+schema_version: 2
 temperature: 0.7
-access_date: null
-access_date_note: Exact model access dates were not recorded in the available source archive and must be confirmed before the camera-ready release.
+evaluation_timestamp_source: detailed per-model leaderboard CSV filename
+evaluation_timestamp_timezone: not encoded in the source filenames
 models:
-  - {name: gpt-5.4, config: gpt-5.4.yaml, reported_model_id: api_azure_openai_gpt-5.4-2026-03-05, family: GPT, scale: undisclosed, alignment: closed-source}
-  - {name: claude-4.6-opus, config: claude-4.6-opus.yaml, reported_model_id: api_naci_default_claude-opus-4-6, family: Claude, scale: undisclosed, alignment: closed-source}
-  - {name: gemini-3.1-pro, config: gemini-3.1-pro.yaml, reported_model_id: api_naci_default_gemini-3.1-pro-preview, family: Gemini, scale: undisclosed, alignment: closed-source}
-  - {name: glm-5.1, config: glm-5.1.yaml, reported_model_id: cdp-glm-5-1-fp8, family: GLM, scale: undisclosed, alignment: closed-source}
-  - {name: qwen3-max, config: qwen3-max.yaml, reported_model_id: api_ali_qwen-max-2025-01-25, family: Qwen, scale: max, alignment: closed-source}
-  - {name: qwen3-1.7b-base, config: qwen3-1.7b-base.yaml, reported_model_id: qwen3-1.7b-base-agent-test, family: Qwen3, scale: 1.7B, alignment: base}
-  - {name: qwen3-1.7b-instruct, config: qwen3-1.7b-instruct.yaml, reported_model_id: qwen3-1.7b-instruct-agent-test, family: Qwen3, scale: 1.7B, alignment: instruct}
-  - {name: qwen3-1.7b-thinking, config: qwen3-1.7b-thinking.yaml, reported_model_id: qwen3-1.7b-instruct-agent-test, family: Qwen3, scale: 1.7B, alignment: thinking}
-  - {name: qwen3-4b-base, config: qwen3-4b-base.yaml, reported_model_id: qwen3-4b-base-agent-test, family: Qwen3, scale: 4B, alignment: base}
-  - {name: qwen3-4b-instruct, config: qwen3-4b-instruct.yaml, reported_model_id: qwen3-4b-instruct-agent-test, family: Qwen3, scale: 4B, alignment: instruct}
-  - {name: qwen3-4b-thinking, config: qwen3-4b-thinking.yaml, reported_model_id: qwen3-4b-thinking-agent-test, family: Qwen3, scale: 4B, alignment: thinking}
-  - {name: qwen3-8b-base, config: qwen3-8b-base.yaml, reported_model_id: qwen3-8b-base-agent-test, family: Qwen3, scale: 8B, alignment: base}
-  - {name: qwen3-8b-instruct, config: qwen3-8b-instruct.yaml, reported_model_id: qwen3-8b-instruct-agent-test, family: Qwen3, scale: 8B, alignment: instruct}
-  - {name: qwen3-8b-thinking, config: qwen3-8b-thinking.yaml, reported_model_id: qwen3-8b-thinking-agent-test, family: Qwen3, scale: 8B, alignment: thinking}
-  - {name: qwen3-14b-base, config: qwen3-14b-base.yaml, reported_model_id: qwen3-14b-base-agent-test, family: Qwen3, scale: 14B, alignment: base}
-  - {name: qwen3-14b-instruct, config: qwen3-14b-instruct.yaml, reported_model_id: qwen3-14b-instruct-agent-test, family: Qwen3, scale: 14B, alignment: instruct}
-  - {name: qwen3-14b-thinking, config: qwen3-14b-thinking.yaml, reported_model_id: qwen3-14b-instruct-agent-test, family: Qwen3, scale: 14B, alignment: thinking}
-  - {name: qwen3-32b-base, config: qwen3-32b-base.yaml, reported_model_id: qwen3-32b-base, family: Qwen3, scale: 32B, alignment: base, provenance_note: reconstructed from the manuscript model grid because no local YAML was found}
-  - {name: qwen3-32b-instruct, config: qwen3-32b-instruct.yaml, reported_model_id: qwen3-32b-instruct-agent-test, family: Qwen3, scale: 32B, alignment: instruct}
-  - {name: qwen3-32b-thinking, config: qwen3-32b-thinking.yaml, reported_model_id: qwen3-32b-thinking-agent-test, family: Qwen3, scale: 32B, alignment: thinking}
-  - {name: llama-3.1-8b-instruct, config: llama-3.1-8b-instruct.yaml, reported_model_id: llama3.1-8b-instruct-agent-test, family: Llama, scale: 8B, alignment: instruct}
-  - {name: deepseek-v3.2-thinking, config: deepseek-v3.2-thinking.yaml, reported_model_id: DeepSeek-V3.2-1202-32k, family: DeepSeek, scale: undisclosed, alignment: thinking}
-  - {name: deepseek-r1-distill-llama-8b, config: deepseek-r1-distill-llama-8b.yaml, reported_model_id: deepseek-r1-llama-8b-agent-test, family: DeepSeek-R1-Distill-Llama, scale: 8B, alignment: instruct}
+  - {name: gpt-5.4, config: gpt-5.4.yaml, reported_model_id: api_azure_openai_gpt-5.4-2026-03-05, family: GPT, scale: undisclosed, alignment: closed-source, evaluation_timestamp: '2026-04-11T15:41:27', source_result_file: leaderboard_20260411_154127_gpt5.4.csv}
+  - {name: claude-4.6-opus, config: claude-4.6-opus.yaml, reported_model_id: api_naci_default_claude-opus-4-6, family: Claude, scale: undisclosed, alignment: closed-source, evaluation_timestamp: '2026-04-11T16:35:16', source_result_file: leaderboard_20260411_163516_claude-4-6-opus.csv}
+  - {name: gemini-3.1-pro, config: gemini-3.1-pro.yaml, reported_model_id: api_naci_default_gemini-3.1-pro-preview, family: Gemini, scale: undisclosed, alignment: closed-source, evaluation_timestamp: '2026-04-11T16:33:44', source_result_file: leaderboard_20260411_163344_gemini-3.1-pro.csv}
+  - {name: glm-5.1, config: glm-5.1.yaml, reported_model_id: cdp-glm-5-1-fp8, family: GLM, scale: undisclosed, alignment: closed-source, evaluation_timestamp: '2026-04-11T01:17:39', source_result_file: leaderboard_20260411_011739_glm-5-1-fp8.csv}
+  - {name: qwen3-max, config: qwen3-max.yaml, reported_model_id: api_ali_qwen-max-2025-01-25, family: Qwen, scale: max, alignment: closed-source, evaluation_timestamp: '2026-04-11T01:51:26', source_result_file: leaderboard_20260411_015126_qwen3-max.csv}
+  - {name: qwen3-1.7b-base, config: qwen3-1.7b-base.yaml, reported_model_id: qwen3-1.7b-base-agent-test, family: Qwen3, scale: 1.7B, alignment: base, evaluation_timestamp: '2026-04-10T10:03:24', source_result_file: leaderboard_20260410_100324_qwen3-1.7b-base-agent-test.csv}
+  - {name: qwen3-1.7b-instruct, config: qwen3-1.7b-instruct.yaml, reported_model_id: qwen3-1.7b-instruct-agent-test, family: Qwen3, scale: 1.7B, alignment: instruct, evaluation_timestamp: '2026-04-10T10:01:13', source_result_file: leaderboard_20260410_100113_qwen3-1.7b-instruct-agent-test.csv}
+  - {name: qwen3-1.7b-thinking, config: qwen3-1.7b-thinking.yaml, reported_model_id: qwen3-1.7b-instruct-agent-test, family: Qwen3, scale: 1.7B, alignment: thinking, evaluation_timestamp: '2026-04-10T10:42:31', source_result_file: leaderboard_20260410_104231_qwen3-1.7b-thinking-agent-test.csv}
+  - {name: qwen3-4b-base, config: qwen3-4b-base.yaml, reported_model_id: qwen3-4b-base-agent-test, family: Qwen3, scale: 4B, alignment: base, evaluation_timestamp: '2026-04-10T11:34:28', source_result_file: leaderboard_20260410_113428_qwen3-4b-base-agent-test.csv}
+  - {name: qwen3-4b-instruct, config: qwen3-4b-instruct.yaml, reported_model_id: qwen3-4b-instruct-agent-test, family: Qwen3, scale: 4B, alignment: instruct, evaluation_timestamp: '2026-04-10T11:34:49', source_result_file: leaderboard_20260410_113449_qwen3-4b-instruct-agent-test.csv}
+  - {name: qwen3-4b-thinking, config: qwen3-4b-thinking.yaml, reported_model_id: qwen3-4b-thinking-agent-test, family: Qwen3, scale: 4B, alignment: thinking, evaluation_timestamp: '2026-04-10T11:34:40', source_result_file: leaderboard_20260410_113440_qwen3-4b-thinking-agent-test.csv}
+  - {name: qwen3-8b-base, config: qwen3-8b-base.yaml, reported_model_id: qwen3-8b-base-agent-test, family: Qwen3, scale: 8B, alignment: base, evaluation_timestamp: '2026-04-10T08:55:26', source_result_file: leaderboard_20260410_085526_qwen3-8b-base-agent-test.csv}
+  - {name: qwen3-8b-instruct, config: qwen3-8b-instruct.yaml, reported_model_id: qwen3-8b-instruct-agent-test, family: Qwen3, scale: 8B, alignment: instruct, evaluation_timestamp: '2026-04-10T09:08:01', source_result_file: leaderboard_20260410_090801_qwen3-8b-instruct-agent-test.csv}
+  - {name: qwen3-8b-thinking, config: qwen3-8b-thinking.yaml, reported_model_id: qwen3-8b-thinking-agent-test, family: Qwen3, scale: 8B, alignment: thinking, evaluation_timestamp: '2026-04-10T10:44:02', source_result_file: leaderboard_20260410_104402_qwen3-8b-thinking-agent-test.csv}
+  - {name: qwen3-14b-base, config: qwen3-14b-base.yaml, reported_model_id: qwen3-14b-base-agent-test, family: Qwen3, scale: 14B, alignment: base, evaluation_timestamp: '2026-04-10T08:37:44', source_result_file: leaderboard_20260410_083744_stream-server-qwen3-14b-base.csv}
+  - {name: qwen3-14b-instruct, config: qwen3-14b-instruct.yaml, reported_model_id: qwen3-14b-instruct-agent-test, family: Qwen3, scale: 14B, alignment: instruct, evaluation_timestamp: '2026-04-10T09:04:02', source_result_file: leaderboard_20260410_090402_stream-server-qwen3-14b-ins.csv}
+  - {name: qwen3-14b-thinking, config: qwen3-14b-thinking.yaml, reported_model_id: qwen3-14b-instruct-agent-test, family: Qwen3, scale: 14B, alignment: thinking, evaluation_timestamp: '2026-04-10T10:43:24', source_result_file: leaderboard_20260410_104324_stream-server-qwen3-14b-thinking.csv}
+  - {name: qwen3-32b-instruct, config: qwen3-32b-instruct.yaml, reported_model_id: qwen3-32b-instruct-agent-test, family: Qwen3, scale: 32B, alignment: instruct, evaluation_timestamp: '2026-04-10T12:22:24', source_result_file: leaderboard_20260410_122224_qwen3-32b-instruct-agent-test.csv}
+  - {name: qwen3-32b-thinking, config: qwen3-32b-thinking.yaml, reported_model_id: qwen3-32b-thinking-agent-test, family: Qwen3, scale: 32B, alignment: thinking, evaluation_timestamp: '2026-04-10T13:28:29', source_result_file: leaderboard_20260410_132829_stream-server-qwen3-32b-thinking.csv}
+  - {name: llama-3.1-8b-instruct, config: llama-3.1-8b-instruct.yaml, reported_model_id: llama3.1-8b-instruct-agent-test, family: Llama, scale: 8B, alignment: instruct, evaluation_timestamp: '2026-04-10T11:21:30', source_result_file: leaderboard_20260410_112130_llama3.1-8b-instruct-agent-test.csv}
+  - {name: deepseek-v3.2-thinking, config: deepseek-v3.2-thinking.yaml, reported_model_id: DeepSeek-V3.2-1202-32k, family: DeepSeek, scale: undisclosed, alignment: thinking, evaluation_timestamp: '2026-04-11T01:03:22', source_result_file: leaderboard_20260411_010322_deepseek-v3.2-thinking-agent-test.csv}
+  - {name: deepseek-r1-distill-llama-8b, config: deepseek-r1-distill-llama-8b.yaml, reported_model_id: deepseek-r1-llama-8b-agent-test, family: DeepSeek-R1-Distill-Llama, scale: 8B, alignment: instruct, evaluation_timestamp: '2026-04-10T13:28:25', source_result_file: leaderboard_20260410_132825_stream-server-deepseek-r1-llama-8b-instruct.csv}
 

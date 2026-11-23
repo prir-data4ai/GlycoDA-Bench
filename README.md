@@ -13,12 +13,20 @@ not contain the benchmark matrices or evaluator hidden truth.
 
 ## Public artifacts
 
-- Participant-facing dataset: <https://huggingface.co/datasets/xiaokui17/GlycoDA-Bench>
-- Experiment code: <https://github.com/evolan17/GlycoAgentBench-v3>
+- Manuscript reproduction release (648 cases, evaluator truth, and 22-system
+  per-case results):
+  <https://huggingface.co/datasets/xiaokui17/glycoforge_benchmark_648>
+- V2 paired/coupled extension (648 cases with realized two-block scenarios):
+  <https://huggingface.co/datasets/xiaokui17/GlycoDA-Bench>
+- Experiment code: <https://github.com/evolan17/GlycoDA-Bench>
 - Data generator framework: <https://github.com/BojarLab/GlycoForge>
 
-Evaluator-only hidden truth must be kept separate from participant-facing inputs and
-must not be exposed to evaluated agents. See
+The manuscript reproduction release is the data release associated with the reported
+22-system results. The v2 paired/coupled extension is a separate supplementary release;
+no manuscript model scores are claimed for v2. Each dataset card and release manifest
+distinguishes the `participant`, `evaluator_truth`, and `results` components. Evaluator
+truth must never be mounted into an evaluated agent's runtime, even when it is publicly
+archived for post-publication reproducibility. See
 [`docs/DATA_AND_CODE_AVAILABILITY.md`](docs/DATA_AND_CODE_AVAILABILITY.md).
 
 ## Repository contents
@@ -27,12 +35,13 @@ must not be exposed to evaluated agents. See
 configs/
   api.example.yaml            # credential-free runtime template
   benchmark/                  # benchmark selection settings
-  models/                     # 23 sanitized reported-system configurations
+  models/                     # 22 sanitized reported-system configurations
   prompts/                    # planner system and user prompts
 docs/
   DATA_AND_CODE_AVAILABILITY.md
   METRICS.md
   REPRODUCIBILITY.md
+  WORKFLOW_GROUND_TRUTH.md
   V1_TO_V3.md
 scripts/
   validate_release.py         # public-release hygiene gate
@@ -113,7 +122,10 @@ Git.
 
 Seven process metrics use the discrete rubric `{0, 0.5, 1}` and four analytical outcome
 metrics remain continuous in `[0, 1]`. Their definitions, formulas, and edge-case rules
-are documented in [`docs/METRICS.md`](docs/METRICS.md).
+are documented in [`docs/METRICS.md`](docs/METRICS.md). The construction facts,
+required/optional/unnecessary workflow actions, and treatment of alternative valid
+workflows are documented in
+[`docs/WORKFLOW_GROUND_TRUTH.md`](docs/WORKFLOW_GROUND_TRUTH.md).
 
 ## Verification
 
@@ -124,13 +136,17 @@ python scripts/validate_release.py .
 
 ## Reproducibility notes
 
-The exact prompts are versioned under `configs/prompts/`. The reported model inventory
-and experimental model IDs are in `configs/models/reported_models.yaml`. The available
-source archive did not record exact access dates for every model; this unresolved item is
-marked explicitly in the manifest and must be confirmed before the camera-ready release.
+The exact prompts are versioned under `configs/prompts/`. The 22-system reported model
+inventory, experimental model/API identifiers, and per-system evaluation timestamps are
+in `configs/models/reported_models.yaml`. Timestamps are transcribed from the detailed
+per-model result CSV filenames; those filenames do not encode a timezone, so none is
+inferred in the manifest.
 
 ## License and citation
 
-Code is released under the MIT License. Cite the accompanying manuscript using
-[`CITATION.cff`](CITATION.cff).
+Code is released under the Apache License 2.0. Cite the accompanying manuscript using
+[`CITATION.cff`](CITATION.cff). GlycoForge is not vendored here: the benchmark build
+reports GlycoForge 0.2.0 and pins the exact upstream commit
+`3e3ed302b2e3aaef1bc47c407c3528939c482a54`. See
+[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for attribution.
 

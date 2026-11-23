@@ -81,7 +81,16 @@ def _is_placeholder(value: str, text: str) -> bool:
 def _candidate_files(root: Path) -> list[Path]:
     if (root / ".git").exists():
         proc = subprocess.run(
-            ["git", "-C", str(root), "ls-files", "-z"],
+            [
+                "git",
+                "-C",
+                str(root),
+                "ls-files",
+                "--cached",
+                "--others",
+                "--exclude-standard",
+                "-z",
+            ],
             check=False,
             capture_output=True,
         )
@@ -94,6 +103,10 @@ def validate_repository(root: Path) -> list[str]:
     root = Path(root).resolve()
     findings: list[str] = []
     for path in sorted(_candidate_files(root)):
+        # ``git ls-files`` includes paths staged or deleted only in the working tree.
+        # A release candidate should validate the files that will actually be present.
+        if not path.is_file():
+            continue
         rel = _relative(path, root)
         rel_parts = path.relative_to(root).parts
         parts = set(rel_parts)
