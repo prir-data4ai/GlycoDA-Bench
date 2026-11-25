@@ -19,10 +19,10 @@ not contain the benchmark matrices or evaluator hidden truth.
 
 - Manuscript reproduction release (648 cases, evaluator truth, and 22-system
   per-case results):
-  <https://huggingface.co/datasets/xiaokui17/glycoforge_benchmark_648/tree/manuscript-v1.0.0>
+  <https://huggingface.co/datasets/prirdata4ai/GlycoDA-Bench/tree/manuscript-v1.0.0>
 - V2 paired/coupled extension (648 cases with realized two-block scenarios):
   <https://huggingface.co/datasets/xiaokui17/GlycoDA-Bench/tree/v2.0.0>
-- Experiment code: <https://github.com/evolan17/GlycoDA-Bench/tree/v3.0.1>
+- Experiment code: <https://github.com/prir-data4ai/GlycoDA-Bench/tree/v3.0.1>
 - Data generator framework: <https://github.com/BojarLab/GlycoForge>
 
 The manuscript reproduction release is the data release associated with the reported

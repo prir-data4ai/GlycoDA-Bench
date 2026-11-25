@@ -83,7 +83,7 @@ checkpoint and report metadata.
 ## Data and evaluator truth
 
 The reported manuscript results map to the Hugging Face **manuscript reproduction
-release** at `xiaokui17/glycoforge_benchmark_648`. Its release manifests distinguish the
+release** at `prirdata4ai/GlycoDA-Bench`. Its release manifests distinguish the
 `participant`, `evaluator_truth`, and `results` components. Evaluator truth is resolved
 with `GLYCOAGENT_HIDDEN_TRUTH_ROOT`; agents must not receive this path, its contents,
 clean matrices, or generation diagnostics. The 22 per-case score tables and aggregation
@@ -94,7 +94,7 @@ contain two realized compositional blocks. It is released as a supplementary ben
 no manuscript model scores are associated with v2.
 
 The immutable dataset revisions are `manuscript-v1.0.0` (commit
-`0c3aacd0045ec3e87476689e8187376c3e41cd5c`) and `v2.0.0` (commit
+`987e7b792c36eefbb7b6cff11e04f685e720b53d`) and `v2.0.0` (commit
 `a582af86c021a39a65fa6fedb39437803449dd68`).
 
 ## Benchmark construction record

@@ -4,7 +4,7 @@ title: "GlycoDA-Bench: Evaluating LLM-Based Agent Workflow Reasoning through Gly
 type: software
 version: 3.0.1
 date-released: 2026-11-23
-repository-code: https://github.com/evolan17/GlycoDA-Bench
+repository-code: https://github.com/prir-data4ai/GlycoDA-Bench
 authors:
   - {family-names: Zhang, given-names: Bo-Wen}
   - {family-names: He, given-names: Jinmei}

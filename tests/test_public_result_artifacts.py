@@ -86,7 +86,10 @@ def test_builder_normalizes_aliases_and_uses_completed_rows_for_means(tmp_path: 
     assert manifest["dataset_release"] == "manuscript-v1"
     assert manifest["metric_schema_id"] == "legacy-v1-report"
     assert manifest["dataset_revision"] == "manuscript-v1.0.0"
-    assert manifest["dataset_commit"] == "0c3aacd0045ec3e87476689e8187376c3e41cd5c"
+    assert manifest["dataset_repository"] == "prirdata4ai/GlycoDA-Bench"
+    assert manifest["dataset_commit"] == "987e7b792c36eefbb7b6cff11e04f685e720b53d"
+    assert manifest["source_dataset_repository"] == "xiaokui17/glycoforge_benchmark_648"
+    assert manifest["source_dataset_commit"] == "0c3aacd0045ec3e87476689e8187376c3e41cd5c"
     assert manifest["current_evaluator_schema_id"] == "aspect-v3-eleven-metric"
     assert manifest["models"][0]["normalized_model_name"] == "model-a"
     assert manifest["models"][0]["raw_model_name_counts"] == {"raw-a": 3, "raw-a-alias": 1}

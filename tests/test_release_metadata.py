@@ -48,8 +48,8 @@ def test_readme_and_availability_name_public_artifacts() -> None:
     text = (Path("README.md").read_text(encoding="utf-8") + "\n" + Path("docs/DATA_AND_CODE_AVAILABILITY.md").read_text(encoding="utf-8"))
 
     assert "https://huggingface.co/datasets/xiaokui17/GlycoDA-Bench" in text
-    assert "https://huggingface.co/datasets/xiaokui17/glycoforge_benchmark_648" in text
-    assert "https://github.com/evolan17/GlycoDA-Bench" in text
+    assert "https://huggingface.co/datasets/prirdata4ai/GlycoDA-Bench" in text
+    assert "https://github.com/prir-data4ai/GlycoDA-Bench" in text
     assert "participant-facing" in text
     assert "evaluator" in text.lower()
     assert "hidden truth" in text.lower()
@@ -73,7 +73,7 @@ def test_release_uses_apache_license_and_attributes_glycoforge() -> None:
     assert "Apache License" in license_text
     assert "Version 2.0" in license_text
     assert citation["license"] == "Apache-2.0"
-    assert citation["repository-code"] == "https://github.com/evolan17/GlycoDA-Bench"
+    assert citation["repository-code"] == "https://github.com/prir-data4ai/GlycoDA-Bench"
     assert "https://github.com/BojarLab/GlycoForge" in notices
     assert "v0.2.0" in notices
     assert "3e3ed302b2e3aaef1bc47c407c3528939c482a54" in notices

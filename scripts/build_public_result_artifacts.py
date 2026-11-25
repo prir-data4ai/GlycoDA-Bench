@@ -26,7 +26,10 @@ ALLOWED_RUN_STATUSES = {"completed", "skipped"}
 METRIC_SCHEMA_ID = "legacy-v1-report"
 CURRENT_EVALUATOR_SCHEMA_ID = "aspect-v3-eleven-metric"
 DATASET_REVISION = "manuscript-v1.0.0"
-DATASET_COMMIT = "0c3aacd0045ec3e87476689e8187376c3e41cd5c"
+DATASET_REPOSITORY = "prirdata4ai/GlycoDA-Bench"
+DATASET_COMMIT = "987e7b792c36eefbb7b6cff11e04f685e720b53d"
+SOURCE_DATASET_REPOSITORY = "xiaokui17/glycoforge_benchmark_648"
+SOURCE_DATASET_COMMIT = "0c3aacd0045ec3e87476689e8187376c3e41cd5c"
 
 
 def _sha256(path: Path) -> str:
@@ -195,9 +198,11 @@ def build_public_result_artifacts(
     release_manifest = {
         "schema_version": 2,
         "dataset_release": "manuscript-v1",
-        "dataset_repository": "xiaokui17/glycoforge_benchmark_648",
+        "dataset_repository": DATASET_REPOSITORY,
         "dataset_revision": DATASET_REVISION,
         "dataset_commit": DATASET_COMMIT,
+        "source_dataset_repository": SOURCE_DATASET_REPOSITORY,
+        "source_dataset_commit": SOURCE_DATASET_COMMIT,
         "metric_schema_id": METRIC_SCHEMA_ID,
         "current_evaluator_schema_id": CURRENT_EVALUATOR_SCHEMA_ID,
         "metric_schema_note": (
